@@ -1,0 +1,12 @@
+<svg width="100%" height="100%" id="svg" viewBox="0 0 1440 600" 
+
+xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+<defs>
+      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="5%" stop-color="#002bdc88"></stop>
+            <stop offset="95%" stop-color="#32ded488"></stop>
+      </linearGradient>
+</defs>
+<path d="M 0,600 C 0,600 0,200 0,200 C 160.2666666666667,244.66666666666669 320.5333333333334,289.33333333333337 469,273 C 617.4666666666666,256.66666666666663 754.1333333333334,179.33333333333331 914,157 C 1073.8666666666666,134.66666666666669 1256.9333333333334,167.33333333333334 1440,200 C 1440,200 1440,600 1440,600 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 300)"></path>
+<defs><linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="5%" stop-color="#002bdcff"></stop><stop offset="95%" stop-color="#32ded4ff"></stop></linearGradient></defs><path d="M 0,600 C 0,600 0,400 0,400 C 120.93333333333334,421.20000000000005 241.86666666666667,442.40000000000003 396,439 C 550.1333333333333,435.59999999999997 737.4666666666667,407.6 917,397 C 1096.5333333333333,386.4 1268.2666666666667,393.2 1440,400 C 1440,400 1440,600 1440,600 Z" stroke="none" stroke-width="0" fill="url(#gradient)" class="transition-all duration-300 ease-in-out delay-150 path-1" 
+transform="rotate(-180 720 300)"></path></svg>

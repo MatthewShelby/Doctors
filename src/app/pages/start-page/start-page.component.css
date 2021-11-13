@@ -1,0 +1,46 @@
+#index{
+      padding: 50px;
+}
+#searchTable{
+      margin: 40px;
+      max-width: 100%;
+}
+#search{
+      background-color: gray;
+      color: white;
+      font-size: 1rem;
+      margin: auto;
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      border-radius: 5px;
+      min-height: 2rem;
+      border: none;
+      width: 80%;
+      max-width: 100% !important;
+}
+::placeholder{
+      color: white;
+
+}
+#signIn{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+#signInButton{
+margin: auto;      
+background-color: #E65DB1;
+color: white;
+padding:10px;
+text-decoration: underline;
+font-size: 1rem;
+border: none;
+border-radius: 10px;
+}
+#signInButton:hover{
+      background-color: #d455a3;
+      color: #dbdbdb;
+      cursor: pointer;
+}
