@@ -44,3 +44,16 @@ border-radius: 10px;
       color: #dbdbdb;
       cursor: pointer;
 }
+#test{
+      background-color: red;
+}
+#loading{
+      max-width: 30%;
+      height: auto;
+      position: relative;
+}
+.center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}

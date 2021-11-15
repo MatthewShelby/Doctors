@@ -1,10 +1,11 @@
 #appHeader{
-            background-color: #3859E4;
-            /*background-color: #418E7D;
-            background-color: #fad6ff;
+            /* background-color: #3859E4; */
+            /* background-color: #3859E4; */
+           background-color: #3F51B5;
+           /* background-color: #fad6ff;
             color: rgb(58, 10, 102);*/
             color: #fad6ff;
-            text-shadow: 3px 3px 18px rgb(255, 0, 0);
+            text-shadow: 2px 2px 14px rgb(255, 0, 0);
             width: 100%;
             margin:auto;
             margin-top: 100px;

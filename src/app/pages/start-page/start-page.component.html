@@ -4,11 +4,26 @@
       <h3>Wellcome to Dorctors app.</h3>
       <p>Here you can search among doctors. read about their services and book an appointment.</p>
 
-      <div id="searchTable">
-            <input  id="search" type="text"  placeholder="search">
+      <div>
+            <div *ngIf="!IsConnected && !Later" class="center">
+                  <img id="loading" src="assets/Images/Template/loading.gif" alt="Loading.....">
+            </div>
+            <div *ngIf="Later" class="center">
+                  <br>
+                  <br>
+                  <br>
+
+                  <p style="color: red;">Could'nt connect to server. please try later.</p>
+            </div>
+            <div *ngIf="IsConnected">
+                  <div id="searchTable">
+                        <input id="search" type="text" placeholder="search">
+                  </div>
+
+                  <div id="signIn">
+                        <button routerLink="signin" id="signInButton">Sign In / Register</button>
+                  </div>
+            </div>
       </div>
 
-      <div id="signIn">
-            <button id="signInButton">Sign In / Sign Up</button>
-      </div>
 </div>

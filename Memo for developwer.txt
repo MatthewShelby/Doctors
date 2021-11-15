@@ -1,0 +1,2 @@
+Develop a method on each server controller which GETs the connection status or something to make the frontend sure that
+the server is available to send requests.
