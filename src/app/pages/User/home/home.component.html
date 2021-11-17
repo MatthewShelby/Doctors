@@ -1,0 +1,43 @@
+<div id="main">
+
+      <span id="titlespan">
+            <p id="title">User Panel</p>
+      </span>
+
+      <div>
+            <ul>
+
+
+
+                  <li>
+                        <label>User Email: </label>
+                        <p class="par"> {{currentUser.email}}</p>
+                  </li>
+                  <li>
+                        <label>User ID: </label>
+                        <p class="par"> {{currentUser.id}}</p>
+                  </li>
+                  <li>
+                        <label> Authentication Token: </label>
+                        <p class="par"> {{currentUser.token}}</p>
+                  </li>
+
+                  <li>
+                        <label>Login expire date: </label>
+                        <p class="par"> {{currentUser.expires}}</p>
+                  </li>
+
+            </ul>
+      </div>
+
+      <br>
+
+      <div id="signinkeyspan">
+            <br>
+
+      </div>
+
+      <br>
+<app-footer></app-footer>
+
+</div>

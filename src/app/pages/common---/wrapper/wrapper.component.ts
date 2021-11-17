@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class WrapperComponent implements OnInit {
 
   constructor() { }
-
+  userSignedIn = false;
   ngOnInit(): void {
+    
   }
 
 }

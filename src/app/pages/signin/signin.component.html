@@ -31,7 +31,7 @@
             <br>
 
             <button mat-raised-button color="primary" style="width: 90%;"
-            (click)="ngSubmit()">
+            (click)="ngSubmit()" [disabled]="registerForm.invalid">
                   <mat-icon matSuffix> login</mat-icon>
                   Sign in
             </button>
@@ -51,7 +51,7 @@
             <button routerLink="/register" mat-stroked-button color="accent">Register</button>
             <br>
             <br>
-            <button mat-button color="primary" style="text-decoration: underline;">Forgot Password </button>
+            <button disabled mat-button color="primary" style="text-decoration: underline;">Forgot Password </button>
 
       </div>
 

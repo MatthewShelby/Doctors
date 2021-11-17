@@ -1,0 +1,23 @@
+#main{
+      background-color: rgb(118, 120, 153);
+      border-radius:  0px 0px 30px 30px;
+}
+
+
+.myButton{
+      float: left;
+      width: 18%; /* three boxes (use 25% for four, and 50% for two, etc) */
+      padding: 10px; /* if you want space between the images */
+      text-align: center;
+
+}
+
+* {
+      box-sizing: border-box;
+    }
+
+.clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
