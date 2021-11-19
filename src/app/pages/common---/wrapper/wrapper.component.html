@@ -1,6 +1,9 @@
 <div id="appWrapper">
       <app-header></app-header>
-      <!-- <app-start-page></app-start-page> -->
-      <router-outlet></router-outlet>
+
+      <div id="holder">
+            <!-- <app-start-page></app-start-page> -->
+            <router-outlet></router-outlet>
+      </div>
       <app-footer *ngIf="userSignedIn"></app-footer>
 </div>

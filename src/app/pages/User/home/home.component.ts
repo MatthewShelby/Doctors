@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../../../Lateral/UserService'
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   public currentUser: CurrentUser
   constructor(private http: HttpClient,
     private cookieService: CookieService,
-
+    private userService: UserService
 
 
   ) { this.currentUser = new CurrentUser('', '', '', new Date); }
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
 
     console.log('# cu: ' + token)
 
-    this.http.get<ResultDTO>("https://localhost:44339/api/account/test-auth")
+    // this.http.get<ResultDTO>("https://localhost:44339/api/account/test-auth")
+    this.http.get<ResultDTO>("/api/account/test-auth")
       .subscribe(res => {
         if (res.status === 'Succeed.') {
           this.currentUser = new CurrentUser(res.data.id,
@@ -29,13 +31,16 @@ export class HomeComponent implements OnInit {
             res.data.token,
             res.data.expires
           );
+          this.userService.setCurrentUser(this.currentUser);
+
         }
       }
       )
 
- 
+
 
   }
+  public lorem:string=""
 }
 
 

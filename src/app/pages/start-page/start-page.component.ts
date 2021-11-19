@@ -51,7 +51,8 @@ export class StartPageComponent implements OnInit {
     if (this.IsConnected) {
       return
     }
-    this.http.get<resultDTO>("https://localhost:44339/api/account/test")
+    // this.http.get<resultDTO>("https://localhost:44339/api/account/test")
+    this.http.get<resultDTO>("/api/account/test")
       .subscribe(res => {
         if (res.status == 'Succeed.') {
           console.log(res);

@@ -24,21 +24,41 @@ export class Interceptor implements HttpInterceptor {
             //let myRequest: HttpRequest<any> = req;
 
             const cookieToken = this.cookieService.get("CU");
+
             console.log('cookieTOken is: ' + cookieToken);
-            let myRequest = req.clone({
-                  url: req.url,
-                  headers: req.headers.append('Authorization', 'bearer ' + cookieToken)
+
+
+            
+            let myRequest1 = req.clone({
+                  url: DomainName + req.url,
+                  //headers: req.headers.append('Authorization', 'bearer ' + cookieToken)
+            
+            
+            
             });
+
+            
+            console.log('myRequest1.url is: ' + myRequest1.url);
+            console.log('myRequest1 is: ' + myRequest1.headers.get('method'));
+
+            
+
             if (cookieToken != '' && cookieToken != null && cookieToken !== "") {
                   console.log('****************');
-
-                  myRequest.headers.append('Authorization', 'bearer ' + cookieToken);
-                  console.log('myRequest is: ' + myRequest.headers.get('Authorization'));
+                  let myRequest = myRequest1.clone({
+                        headers: req.headers.append('Authorization', 'bearer ' + cookieToken)
+                  });
+                  return next.handle(myRequest);
+                  console.log('myRequest.url is: ' + myRequest.url);
 
             }
 
-            return next.handle(myRequest);
+            return next.handle(myRequest1);
 
       }
 
 }
+
+
+import {environment} from '../../environments/environment'
+export const DomainName = environment.production? 'https://qweq.ir':'https://localhost:44339'

@@ -1,4 +1,6 @@
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/Lateral/UserService';
 
 @Component({
   selector: 'app-wrapper',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WrapperComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
   userSignedIn = false;
   ngOnInit(): void {
-    
+    this.userService.isUserLogin().subscribe(res => (
+      this.userSignedIn = res
+    ))
   }
 
 }

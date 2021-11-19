@@ -20,19 +20,22 @@
                         <input matInput placeholder="Placeholder"
                         type="password" formControlName="password">
                         <mat-icon matSuffix>key</mat-icon>
-                        <!-- <mat-hint>Hint</mat-hint> -->
                   </mat-form-field>
             </p>
-      </form>
+      </form> 
 
+      <br>
       <br>
 
       <div id="signinkeyspan">
             <br>
 
+            <!-- <button mat-raised-button color="primary" style="width: 90%;"
+            (click)="ngSubmit()" [disabled]="registerForm.invalid"> -->
             <button mat-raised-button color="primary" style="width: 90%;"
-            (click)="ngSubmit()" [disabled]="registerForm.invalid">
+            (click)="ngSubmit()" >
                   <mat-icon matSuffix> login</mat-icon>
+
                   Sign in
             </button>
 

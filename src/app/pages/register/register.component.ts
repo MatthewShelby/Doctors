@@ -44,7 +44,8 @@ export class RegisterComponent implements OnInit {
 
     console.log(rd);
 
-    this.http.post<RegisterResulttDTO>("https://localhost:44339/api/account/register-user", rd)
+    // this.http.post<RegisterResulttDTO>("https://localhost:44339/api/account/register-user", rd)
+    this.http.post<RegisterResulttDTO>("/api/account/register-user", rd)
       .subscribe(res => {
         console.log(res)
       }

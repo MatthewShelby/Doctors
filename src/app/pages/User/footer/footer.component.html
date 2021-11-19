@@ -1,23 +1,36 @@
-<div id="main">
-
+<div id="main" (click)="setSituation()">
 
 
 
   <section class="clearfix">
 
 
-    <div class="myButton">
-      <button mat-icon-button id="profile">
+    <div class="myButton" *ngIf="!isProfile">
+      <button mat-icon-button id="profile" routerLink="/user-profile">
         <span class="material-icons">
           account_circle
         </span>
       </button>
     </div>
 
+    <div class="myButton"  *ngIf="isProfile">
+      <button mat-mini-fab id="profile" routerLink="/user-profile">
+        <span class="material-icons">
+          account_circle
+        </span>
+      </button>
+    </div>
 
+    <div class="myButton" *ngIf="!isSearch">
+      <button mat-icon-button id="search" routerLink="/user-search">
+        <span class="material-icons">
+          search
+        </span>
+      </button>
+    </div>
 
-    <div class="myButton">
-      <button mat-icon-button id="search">
+    <div class="myButton" *ngIf="isSearch">
+      <button mat-mini-fab id="search" routerLink="/user-search">
         <span class="material-icons">
           search
         </span>
@@ -26,8 +39,16 @@
 
 
 
-    <div class="myButton" style="width: 26%;">
-      <button mat-fab id="userHome">
+    <div class="myButton" *ngIf="!isHome">
+      <button mat-icon-button id="userHome" routerLink="/user-home">
+        <span class="material-icons">
+          home
+        </span>
+      </button>
+    </div>
+
+    <div class="myButton"  *ngIf="isHome">
+      <button mat-mini-fab id="userHome" routerLink="/user-home">
         <span class="material-icons">
           home
         </span>
@@ -36,8 +57,16 @@
 
 
 
-    <div class="myButton">
-      <button mat-icon-button id="appointment">
+    <div class="myButton" *ngIf="!isAppointments">
+      <button mat-icon-button id="appointment" routerLink="/user-appointments">
+        <span class="material-icons">
+          today
+        </span>
+      </button>
+    </div>
+
+    <div class="myButton" *ngIf="isAppointments">
+      <button mat-mini-fab id="appointment">
         <span class="material-icons">
           today
         </span>
@@ -46,8 +75,17 @@
 
 
 
-    <div class="myButton">
-      <button mat-icon-button id="marked">
+
+    <div class="myButton" *ngIf="!isBookmarks">
+      <button mat-icon-button id="marked" routerLink="/user-bookmarks">
+        <span class="material-icons">
+          bookmark_border
+        </span>
+      </button>
+    </div>
+
+    <div class="myButton"  *ngIf="isBookmarks">
+      <button mat-mini-fab id="marked">
         <span class="material-icons">
           bookmark_border
         </span>

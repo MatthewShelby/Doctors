@@ -22,6 +22,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/User/home/home.component';
 import { FooterComponent } from './pages/User/footer/footer.component';
 import { MatCardModule } from '@angular/material/card';
+import { ProfileComponent } from './pages/User/profile/profile.component';
+import { BaseComponent } from './pages/User/base/base.component';
+import { UserSearchComponent } from './pages/User/user-search/user-search.component';
+import { UserAppointmentsComponent } from './pages/User/user-appointments/user-appointments.component';
+import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmarks.component';
 
 
 
@@ -35,7 +40,12 @@ import { MatCardModule } from '@angular/material/card';
     SigninComponent,
     RegisterComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent,
+    BaseComponent,
+    UserSearchComponent,
+    UserAppointmentsComponent,
+    UserBookmarksComponent
   ],
   imports: [
     BrowserModule,
