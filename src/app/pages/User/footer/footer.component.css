@@ -6,7 +6,7 @@
 
 .myButton{
       float: left;
-      width: 18%; /* three boxes (use 25% for four, and 50% for two, etc) */
+      width: 20%; /* three boxes (use 25% for four, and 50% for two, etc) */
       padding: 10px; /* if you want space between the images */
       text-align: center;
 

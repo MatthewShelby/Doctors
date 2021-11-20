@@ -24,15 +24,20 @@ export class StartPageComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.testGet()
+    /*
     this.initGet();
     setTimeout(() => {
       if (!this.IsConnected) {
         this.Later=true;
       }
     }, 60000);
+*/
   }
 
   initGet() {
+
     this.IsConnected = false
     this.testGet();
     for (let index = 0; index < 6; index++) {

@@ -30,6 +30,7 @@ export class LoginResultDTO {
         id: string,
         email: string,
         token: string,
-        expires: Date
+        expires: Date,
+        issue: Date
       }
     }

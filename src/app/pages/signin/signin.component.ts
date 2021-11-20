@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
   constructor(private http: HttpClient,
     private cookieService: CookieService,
     private router: Router,
-    private userService:UserService) {
+    private userService: UserService) {
 
   }
 
@@ -51,6 +51,25 @@ export class SigninComponent implements OnInit {
     })
   }
 
+
+
+  // login(email: string, password: string) {
+
+  //   const rd = new LoginDTO(
+  //     this.registerForm.controls['email'].value,
+  //     this.registerForm.controls['password'].value,
+  //   )
+
+
+  //   return this.http.post<string>('/api/login', rd)
+  //     // this is just the HTTP call, 
+  //     // we still need to handle the reception of the token
+  //     .shareReplay();
+
+  // }
+
+
+
   ngSubmit() {
 
     console.log("login-component Submit starts");
@@ -60,6 +79,9 @@ export class SigninComponent implements OnInit {
       this.registerForm.controls['email'].value,
       this.registerForm.controls['password'].value,
     )
+
+
+
 
     // this.http.post<LoginResultDTO>("https://localhost:44339/api/account/login-user", rd)
     this.http.post<LoginResultDTO>("/api/account/login-user", rd)
@@ -79,7 +101,7 @@ export class SigninComponent implements OnInit {
           )
 
           this.userService.setCurrentUser(currentUser);
-          
+
           console.log('current user: ' + currentUser);
           this.cookieService.set('CU', JSON.stringify(currentUser.token));
           this.router.navigate(['./user-home']);
