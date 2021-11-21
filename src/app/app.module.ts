@@ -12,6 +12,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SigninComponent } from './pages/signin/signin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Interceptor } from './Lateral/interceptor';
+import { Server } from './Lateral/Server';
+import { Guard } from './Lateral/Guard';
 
 // --- material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,6 +29,13 @@ import { BaseComponent } from './pages/User/base/base.component';
 import { UserSearchComponent } from './pages/User/user-search/user-search.component';
 import { UserAppointmentsComponent } from './pages/User/user-appointments/user-appointments.component';
 import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmarks.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RegisterDoneComponent } from './pages/register-done/register-done.component';
+import { EmailConfirmationComponent } from './pages/email-confirmation/email-confirmation.component';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
+
+
 
 
 
@@ -45,7 +54,9 @@ import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmar
     BaseComponent,
     UserSearchComponent,
     UserAppointmentsComponent,
-    UserBookmarksComponent
+    UserBookmarksComponent,
+    RegisterDoneComponent,
+    EmailConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,14 +71,15 @@ import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmar
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
-    }
+    }, Server, FooterComponent,  [Server, Guard, SecureInnerPagesGuard]
 
   ],
   bootstrap: [AppComponent]

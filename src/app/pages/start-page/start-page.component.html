@@ -1,19 +1,19 @@
 <div id="index">
 
 
-      <h3>Wellcome to Dorctors app.</h3>
+      <h3  >Wellcome to Dorctors app.</h3>
       <p>Here you can search among doctors. read about their services and book an appointment.</p>
 
       <div>
             <div *ngIf="!IsConnected && !Later" class="center">
                   <img id="loading" src="assets/Images/Template/loading.gif" alt="Loading.....">
             </div>
-            <div *ngIf="Later" class="center">
+            <div *ngIf="Later " class="center">
                   <br>
                   <br>
                   <br>
 
-                  <p style="color: red;">Could'nt connect to server. please try later.</p>
+                  <h3 style="color: red;">Could'nt connect to server. please refresh  the page a while later.</h3>
             </div>
             <div *ngIf="IsConnected">
                   <div id="searchTable">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
 @Component({
@@ -6,6 +6,8 @@ import { Router } from '@angular/router'
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
+
+@Injectable()
 export class FooterComponent implements OnInit {
 
   constructor(private route: Router) {
@@ -13,18 +15,20 @@ export class FooterComponent implements OnInit {
 
     this.setSituation();
 
-   }
+  }
 
   public nna: string = 'undefined.';
   public isProfile = false;
   public isSearch = false;
-  public isHome = false; 
+  public isHome = false;
   public isAppointments = false;
   public isBookmarks = false;
 
 
   ngOnInit(): void {
-    this.setSituation();
+    setTimeout(() => {
+      this.setSituation();
+    }, 2000);
     // this.nna = this.route.url;  
 
   }

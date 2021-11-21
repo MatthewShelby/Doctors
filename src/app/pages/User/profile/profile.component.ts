@@ -1,32 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Server } from 'src/app/Lateral/Server';
 import { CurrentUser, LoginDTO, LoginResultDTO } from '../../../Lateral/DTOs';
-import { UserService } from '../../../Lateral/UserService';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['../sharedStyle.css']
+
+  // styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService,
+  public currentUser: CurrentUser;
+  constructor(private server: Server,
     
-  ) { }
-public currentUser: CurrentUser = new CurrentUser('','','',null);
+  ) {
+    this.currentUser = this.server.currentUser.getValue();
+   }
   
 
 
   ngOnInit(): void {
-
-   
-    console.log('current 1user: '+this.currentUser);
-    console.log('ppp');
-    this.userService.getCurrentUser().subscribe(res => (
-      this.currentUser = res
-    )
-    );
-    console.log('current 2user: '+JSON.stringify( this.currentUser));
-
     
   }
 

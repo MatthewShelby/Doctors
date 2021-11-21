@@ -1,63 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
-import { UserService } from '../../../Lateral/UserService'
+import { Subscription } from 'rxjs';
+import { Server } from 'src/app/Lateral/Server';
+import { CurrentUser, } from 'src/app/Lateral/DTOs';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  //styleUrls: ['./home.component.css']
+  styleUrls: ['../sharedStyle.css']
 })
+
 export class HomeComponent implements OnInit {
-  public currentUser: CurrentUser
-  constructor(private http: HttpClient,
-    private cookieService: CookieService,
-    private userService: UserService
+
+  public isLoggedIn = false;
+  public currentUser: CurrentUser;
+  private userSub: Subscription;
+  private loggedIn: Subscription;
 
 
-  ) { this.currentUser = new CurrentUser('', '', '', new Date); }
 
-  ngOnInit(): void {
-    let token = this.cookieService.get('CU');
-
-    console.log('# cu: ' + token)
-
-    // this.http.get<ResultDTO>("https://localhost:44339/api/account/test-auth")
-    this.http.get<ResultDTO>("/api/account/test-auth")
-      .subscribe(res => {
-        if (res.status === 'Succeed.') {
-          this.currentUser = new CurrentUser(res.data.id,
-            res.data.email,
-            res.data.token,
-            res.data.expires
-          );
-          this.userService.setCurrentUser(this.currentUser);
-
-        }
-      }
-      )
-
-
+  constructor(
+    private server: Server,
+    private footer: FooterComponent
+  ) {
+    this.userSub = new Subscription();
+    this.loggedIn = new Subscription();
+    this.currentUser = new CurrentUser('', '', '', null)
+    //this.footer.setSituation();
 
   }
-  public lorem:string=""
-}
 
+  ngOnInit(): void {
 
+    //this.server.GetCurrentUser();
+    this.currentUser = this.server.currentUser.getValue();
+    this.footer.setSituation();
+    setTimeout(()=>{this.footer.setSituation();
+    console.log('again in 1000')},3000)
+  }
 
-export class ResultDTO {
-  constructor(
-    public status: string,
-    public data: CurrentUser
-  ) { }
-}
-
-export class CurrentUser {
-  constructor(
-    public id: string,
-    public email: string,
-    public token: string,
-    public expires: Date
-  ) { }
-
+  onLogOut() {
+    this.server.LogOutUser()
+  }
 }

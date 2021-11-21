@@ -9,7 +9,7 @@ import { CurrentUser, LoginDTO, LoginResultDTO } from '../Lateral/DTOs';
 export class UserService {
 
   private currentUser: BehaviorSubject<CurrentUser> = new BehaviorSubject<CurrentUser>(new CurrentUser('', '', '', null));
-  private userLogin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isUserLogin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient
@@ -18,21 +18,32 @@ export class UserService {
 
 
 
-  setCurrentUser(user: CurrentUser): void {
-    console.log('SET current user om user service SET method');
-    this.userLogin.next(true);
+  SetCurrentUser(user: CurrentUser): void {
+    console.log('SET current user on user service SET method');
+    this.isUserLogin.next(true);
     this.currentUser.next(user);
   }
 
-  getCurrentUser(): Observable<CurrentUser> {
+  GetCurrentUser(): Observable<CurrentUser> {
     console.log('getting current user om user service get method');
     return this.currentUser;
   }
 
-  isUserLogin(): Observable<boolean> {
-    this.userLogin.next(true);
-    return this.userLogin;
+  IsUserLogin(): Observable<boolean> {
+    this.isUserLogin.next(true);
+    return this.isUserLogin;
   }
+  
+
+
+
+
+
+
+
+
+
+
   
   //   registerUser(registerData: RegisterUserDTO): Observable<any> {
   //     return this.http.post<any>('/account/register', registerData);

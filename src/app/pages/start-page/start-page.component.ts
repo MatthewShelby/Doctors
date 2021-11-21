@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, fromEvent, Observable, timer } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { delay, Subscription } from 'rxjs';
+import { CurrentUser, LoginDTO } from 'src/app/Lateral/DTOs';
+import { Server } from "../../Lateral/Server"
 
 @Component({
   selector: 'app-start-page',
@@ -10,69 +11,76 @@ import { delay, fromEvent, Observable, timer } from 'rxjs';
   styleUrls: ['./start-page.component.css']
 })
 
-@Injectable()
 export class StartPageComponent implements OnInit {
 
   public IsConnected = false;
+  public isLoggedIn = false;
+  public currentUser: CurrentUser = new CurrentUser('', '', '', null);
+  private userSub: Subscription;
+  private connection: Subscription;
+  private loggedIn: Subscription;
+
+
   public Later = false;
 
+
   constructor(
-    private http: HttpClient
+    private router: Router,
+    private server: Server,
   ) {
-    this.IsConnected = false
+    this.userSub = new Subscription;
+    this.connection = new Subscription();
+    this.loggedIn = new Subscription();
   }
 
 
   ngOnInit(): void {
 
-    this.testGet()
-    /*
-    this.initGet();
     setTimeout(() => {
-      if (!this.IsConnected) {
-        this.Later=true;
-      }
-    }, 60000);
-*/
+      this.server.IsConnected();
+      this.server.GetCurrentUser();
+
+      this.connection = this.server.isConnected.subscribe(conn => {
+        this.IsConnected = conn;
+      });
+
+      this.userSub = this.server.currentUser.subscribe(user => {
+        this.currentUser = user;
+
+      })
+
+      this.loggedIn = this.server.isLoggedIn.subscribe(llog => {
+        this.isLoggedIn = llog;
+      })
+    }, 300)
+
+
+    // setTimeout(() => {
+    //   console.log('start page => current user: ' + JSON.stringify(this.currentUser));
+    //   // console.log('start page => IsConnected: ' + JSON.stringify(this.IsConnected));
+    //   console.log('start page => isLoggedIn: ' + JSON.stringify(this.isLoggedIn));
+
+    //   if (this.isLoggedIn) {
+    //     this.router.navigate(['./user-home']);
+    //   }
+    // }, 1000)
+
   }
 
-  initGet() {
-
-    this.IsConnected = false
-    this.testGet();
-    for (let index = 0; index < 6; index++) {
-      setTimeout(() => {
-        this.testGet();
-      }, 6000);
-    }
-
-
-  }
 
 
 
-  testGet() {
 
-    if (this.IsConnected) {
-      return
-    }
-    // this.http.get<resultDTO>("https://localhost:44339/api/account/test")
-    this.http.get<resultDTO>("/api/account/test")
-      .subscribe(res => {
-        if (res.status == 'Succeed.') {
-          console.log(res);
-          this.IsConnected = true;
-        } else {
-          this.IsConnected = false
-        }
-      }
-      );
-  }
+
+
 }
 
-export class resultDTO {
-  constructor(
-    public status: string,
-    public data: string
-  ) { }
-}
+
+
+
+
+
+
+
+
+

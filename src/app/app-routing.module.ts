@@ -10,16 +10,24 @@ import { UserAppointmentsComponent } from './pages/User/user-appointments/user-a
 import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmarks.component';
 import { BaseComponent } from './pages/User/base/base.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
+import { RegisterDoneComponent } from './pages/register-done/register-done.component';
+import { EmailConfirmationComponent } from './pages/email-confirmation/email-confirmation.component';
+import { Guard } from './Lateral/Guard';
+import { AuthGuard } from './auth.guard';
+import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
+
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user-home', component: HomeComponent },
-  { path: 'user-profile', component: ProfileComponent },
-  { path: 'user-base', component: BaseComponent },
-  { path: 'user-search', component: UserSearchComponent },
-  { path: 'user-bookmarks', component: UserBookmarksComponent },
-  { path: 'user-appointments', component: UserAppointmentsComponent },
+  { path: 'user-home', component: HomeComponent ,  canActivate:[AuthGuard]},
+  { path: 'user-profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  { path: 'user-base', component: BaseComponent ,  canActivate:[AuthGuard]},
+  { path: 'user-search', component: UserSearchComponent ,  canActivate:[AuthGuard]},
+  { path: 'user-bookmarks', component: UserBookmarksComponent,  canActivate:[AuthGuard] },
+  { path: 'user-appointments', component: UserAppointmentsComponent ,  canActivate:[AuthGuard]},
+  { path: 'email-confirmation/:ac', component: EmailConfirmationComponent },
+  { path: 'register-done', component: RegisterDoneComponent },
   { path: '', component: StartPageComponent },
 
 ];

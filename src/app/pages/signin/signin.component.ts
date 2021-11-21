@@ -3,9 +3,9 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router'
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { CurrentUser, LoginDTO, LoginResultDTO } from '../../Lateral/DTOs';
-import { UserService } from '../../Lateral/UserService';
+import { FooterComponent } from '../User/footer/footer.component';
 
 @Component({
   selector: 'app-signin',
@@ -16,25 +16,24 @@ import { UserService } from '../../Lateral/UserService';
 // @Injectable
 export class SigninComponent implements OnInit {
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private cookieService: CookieService,
     private router: Router,
-    private userService: UserService) {
+    private footer: FooterComponent,
+    private _snackBar: MatSnackBar) {
 
   }
 
 
   public registerForm!: FormGroup;
 
+  openSnackBar(error:string) {
+    this._snackBar.open('Error: '+error,undefined,{duration:5000,verticalPosition:'top', panelClass: ['blue-snackbar']})  
+  }
 
   ngOnInit(): void {
-    //let gg:CurrentUser = JSON.parse('%7B%22id%22%3A%22426d2f22-5284-4282-a28b-13d8ae7535d3%22%2C%22email%22%3A%22mrshahabi%40yahoo.com%22%2C%22token%22%3A%22NKHE4XABEV4KQTGY7ICFXPMJ3E36DWQG%22%2C%22expires%22%3A%22%22%7D');
 
-    //let gg: CurrentUser = JSON.parse(this.cookieService.get('CU'));
-
-    console.log('ppp');
-    // console.log(gg);
-    console.log('kkk');
 
     this.registerForm = new FormGroup({
       'email': new FormControl(null, [
@@ -51,22 +50,6 @@ export class SigninComponent implements OnInit {
     })
   }
 
-
-
-  // login(email: string, password: string) {
-
-  //   const rd = new LoginDTO(
-  //     this.registerForm.controls['email'].value,
-  //     this.registerForm.controls['password'].value,
-  //   )
-
-
-  //   return this.http.post<string>('/api/login', rd)
-  //     // this is just the HTTP call, 
-  //     // we still need to handle the reception of the token
-  //     .shareReplay();
-
-  // }
 
 
 
@@ -100,13 +83,21 @@ export class SigninComponent implements OnInit {
             res.data.expires,
           )
 
-          this.userService.setCurrentUser(currentUser);
+          //this.userService.setCurrentUser(currentUser);
 
           console.log('current user: ' + currentUser);
-          this.cookieService.set('CU', JSON.stringify(currentUser.token));
+          // this.cookieService.set('CU', JSON.stringify(currentUser.token));
+          this.cookieService.set('CU', currentUser.token);
+          console.log('home sets token to cookies ' + JSON.stringify(currentUser.token));
+          this.footer.setSituation();
           this.router.navigate(['./user-home']);
 
         }
+        else {
+          this.openSnackBar(res.data.id);
+        }
+
+
       }
       );
   }
