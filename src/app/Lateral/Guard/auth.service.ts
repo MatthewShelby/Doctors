@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from "@angular/router";
-import { Server } from './Lateral/Server';
+import { Server } from '../Server';
 
 @Injectable({
   providedIn: 'root'

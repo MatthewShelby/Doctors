@@ -61,4 +61,5 @@ export class Interceptor implements HttpInterceptor {
 
 
 import {environment} from '../../environments/environment'
-export const DomainName = environment.production? 'https://qweq.ir':'https://localhost:44339'
+export const DomainName = environment.production? 'https://www.qweq.ir':'https://www.qweq.ir'// Reverse!!!!
+// export const DomainName = environment.production? 'https://www.qweq.ir':'https://192.168.1.3:44339'// Reverse!!!!

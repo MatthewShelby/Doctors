@@ -10,24 +10,28 @@ import { UserAppointmentsComponent } from './pages/User/user-appointments/user-a
 import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmarks.component';
 import { BaseComponent } from './pages/User/base/base.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
-import { RegisterDoneComponent } from './pages/register-done/register-done.component';
 import { EmailConfirmationComponent } from './pages/email-confirmation/email-confirmation.component';
-import { Guard } from './Lateral/Guard';
-import { AuthGuard } from './auth.guard';
-import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
+import { AuthGuard } from './Lateral/Guard/auth.guard';
+// import { SecureInnerPagesGuard } from './Lateral/Guard/secure-inner-pages.guard';
+// import { TestComponent } from './test/test.component';
+import { ChildComponent } from './test/child/child.component';
+import { ChatPageComponent } from './chat/chat-page/chat-page.component';
 
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'email-confirmation/:activeCode/:userId', component: EmailConfirmationComponent },
+  { path: 'test', component: ChildComponent },
   { path: 'user-home', component: HomeComponent ,  canActivate:[AuthGuard]},
   { path: 'user-profile', component: ProfileComponent, canActivate:[AuthGuard]},
   { path: 'user-base', component: BaseComponent ,  canActivate:[AuthGuard]},
   { path: 'user-search', component: UserSearchComponent ,  canActivate:[AuthGuard]},
   { path: 'user-bookmarks', component: UserBookmarksComponent,  canActivate:[AuthGuard] },
   { path: 'user-appointments', component: UserAppointmentsComponent ,  canActivate:[AuthGuard]},
-  { path: 'email-confirmation/:ac', component: EmailConfirmationComponent },
-  { path: 'register-done', component: RegisterDoneComponent },
+  { path: 'chat', component: ChatPageComponent},
+  // { path: 'email-confirmation:activeCode:userId', component: EmailConfirmationComponent },
+ 
   { path: '', component: StartPageComponent },
 
 ];

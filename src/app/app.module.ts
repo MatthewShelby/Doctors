@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServerComponent } from './server/server..component';
 import { HeaderComponent } from './pages/common---/header/header.component';
 import { WrapperComponent } from './pages/common---/wrapper/wrapper.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
@@ -13,7 +12,6 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Interceptor } from './Lateral/interceptor';
 import { Server } from './Lateral/Server';
-import { Guard } from './Lateral/Guard';
 
 // --- material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,10 +28,20 @@ import { UserSearchComponent } from './pages/User/user-search/user-search.compon
 import { UserAppointmentsComponent } from './pages/User/user-appointments/user-appointments.component';
 import { UserBookmarksComponent } from './pages/User/user-bookmarks/user-bookmarks.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RegisterDoneComponent } from './pages/register-done/register-done.component';
 import { EmailConfirmationComponent } from './pages/email-confirmation/email-confirmation.component';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
+// import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { SecureInnerPagesGuard } from './Lateral/Guard/secure-inner-pages.guard';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DataPackage, DialogDataExample } from './Material/Dialog/dialog';
+import { AuthGuard } from './Lateral/Guard/auth.guard';
+import { DIALOG_HEAD, DIALOG_TITLE, DIALOG_CONTENT } from './Material/Dialog/dialog'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TestComponent } from './test/test.component';
+// import { DataService } from './services/data-ser.service';
+import { ChildComponent } from './test/child/child.component';
+import { NumberService } from './test/number-service.service';
+import { ChatPageComponent } from './chat/chat-page/chat-page.component';
+import { HubService } from './chat/hub.service';
 
 
 
@@ -42,7 +50,6 @@ import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent,
     HeaderComponent,
     WrapperComponent,
     StartPageComponent,
@@ -55,8 +62,11 @@ import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
     UserSearchComponent,
     UserAppointmentsComponent,
     UserBookmarksComponent,
-    RegisterDoneComponent,
     EmailConfirmationComponent,
+    DialogDataExample,
+    TestComponent,
+    ChildComponent,
+    ChatPageComponent
   ],
   imports: [
     BrowserModule,
@@ -72,14 +82,29 @@ import { SecureInnerPagesGuard } from './secure-inner-pages.guard';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
-    }, Server, FooterComponent,  [Server, Guard, SecureInnerPagesGuard]
+    },
+    Server,
+    NumberService,
+    HubService,
+    // DataService,
+    FooterComponent,
+    [Server, AuthGuard, SecureInnerPagesGuard],
+    DialogDataExample,
+    { provide: DIALOG_HEAD, useValue: "My Wonderful head" },
+    { provide: DIALOG_TITLE, useValue: "My Wonderful Title" },
+    { provide: DIALOG_CONTENT, useValue: "My Wonderful content" }
+
+
+
 
   ],
   bootstrap: [AppComponent]

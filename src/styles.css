@@ -9,3 +9,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       font-size: 4rem;
       /* color: lawngreen; */
     }
+
+    #dialogCloseButton{
+      padding: 10px;
+      background-color: white;
+      border: rgb(184, 184, 184) 3px solid;
+      border-radius: 5px;
+
+    }
+    #dialogCloseButtonDiv{
+      text-align: center;
+      padding: 10px;
+    }

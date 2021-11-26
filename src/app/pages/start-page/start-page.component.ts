@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { delay, Subscription } from 'rxjs';
 import { CurrentUser, LoginDTO } from 'src/app/Lateral/DTOs';
+import { DialogDataExample, DataPackage } from 'src/app/Material/Dialog/dialog';
 import { Server } from "../../Lateral/Server"
 
 @Component({
@@ -19,6 +21,7 @@ export class StartPageComponent implements OnInit {
   private userSub: Subscription;
   private connection: Subscription;
   private loggedIn: Subscription;
+  ;
 
 
   public Later = false;
@@ -27,6 +30,7 @@ export class StartPageComponent implements OnInit {
   constructor(
     private router: Router,
     private server: Server,
+    private dialog: DialogDataExample
   ) {
     this.userSub = new Subscription;
     this.connection = new Subscription();
@@ -68,11 +72,7 @@ export class StartPageComponent implements OnInit {
   }
 
 
-
-
-
-
-
+  
 }
 
 

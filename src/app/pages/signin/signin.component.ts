@@ -3,9 +3,10 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router'
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CurrentUser, LoginDTO, LoginResultDTO } from '../../Lateral/DTOs';
 import { FooterComponent } from '../User/footer/footer.component';
+import { Server } from 'src/app/Lateral/Server';
 
 @Component({
   selector: 'app-signin',
@@ -21,20 +22,28 @@ export class SigninComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router,
     private footer: FooterComponent,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    private server: Server) {
 
   }
 
 
   public registerForm!: FormGroup;
 
-  openSnackBar(error:string) {
-    this._snackBar.open('Error: '+error,undefined,{duration:5000,verticalPosition:'top', panelClass: ['blue-snackbar']})  
+  openSnackBar(error: string) {
+    this._snackBar.open('Error: ' + error, undefined, { duration: 5000, verticalPosition: 'top', panelClass: ['blue-snackbar'] })
   }
 
   ngOnInit(): void {
 
 
+    setTimeout(() => {
+      let check: boolean = this.server.isLoggedIn.getValue()
+      if (check) {
+        this.router.navigate(['../user-home']);
+
+      }
+    }, 2000)
     this.registerForm = new FormGroup({
       'email': new FormControl(null, [
         Validators.required,
@@ -55,13 +64,18 @@ export class SigninComponent implements OnInit {
 
   ngSubmit() {
 
-    console.log("login-component Submit starts");
-
 
     const rd = new LoginDTO(
       this.registerForm.controls['email'].value,
       this.registerForm.controls['password'].value,
     )
+
+    this.server.SignInUser(rd);
+
+    /*
+
+
+
 
 
 
@@ -72,9 +86,7 @@ export class SigninComponent implements OnInit {
         console.log(' res: ' + res.data);
 
         if (res.status === 'Succeed.') {
-          console.log('Succeed. res: ' + res);
-
-
+          console.log('Succeed on sign in##. res: ' + res);
 
           const currentUser = new CurrentUser(
             res.data.id,
@@ -82,23 +94,28 @@ export class SigninComponent implements OnInit {
             res.data.token,
             res.data.expires,
           )
-
-          //this.userService.setCurrentUser(currentUser);
-
           console.log('current user: ' + currentUser);
-          // this.cookieService.set('CU', JSON.stringify(currentUser.token));
           this.cookieService.set('CU', currentUser.token);
           console.log('home sets token to cookies ' + JSON.stringify(currentUser.token));
           this.footer.setSituation();
-          this.router.navigate(['./user-home']);
-
+          console.log('home setSituation done ');
         }
         else {
           this.openSnackBar(res.data.id);
         }
+      });
 
 
+    this.server.GetCurrentUser();
+*/
+    setTimeout(() => {
+      let check: boolean = this.server.isLoggedIn.getValue()
+      console.log('reout 111 ######')
+
+      if (check) {
+        this.router.navigate(['../user-home']);
+        console.log('reouter####################')
       }
-      );
+    }, 2000)
   }
 }

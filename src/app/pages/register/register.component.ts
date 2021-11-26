@@ -1,16 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataPackage, DialogDataExample } from '../../Material/Dialog/dialog';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+
+
+
+
 export class RegisterComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
   public registerForm!: FormGroup;
+
+
+  constructor(
+    private http: HttpClient,
+    private router:Router,
+    private dialog: DialogDataExample
+    ) { }
+
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -48,6 +62,13 @@ export class RegisterComponent implements OnInit {
     this.http.post<RegisterResulttDTO>("/api/account/register-user", rd)
       .subscribe(res => {
         console.log(res)
+        if (res.status === 'Succeed.') {
+          this.dialog.datapack = new DataPackage(' ',
+          'Your Account has registered',
+          'Please check your email and click the link to activate your account');
+          this.dialog.openDialog();
+          this.router.navigate(['./signin']);
+        }
       }
       );
 

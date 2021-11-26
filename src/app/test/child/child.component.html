@@ -1,0 +1,17 @@
+<div style="border: 5px red solid; padding:40px">
+      <h2 style="background-color: lightgray;">{{showNum}}</h2>
+      <p style="background-color: lightgray;"></p>
+</div>
+<br>
+
+<div>
+      <h4>Text:</h4>
+      <p>{{intext}}</p>
+</div>
+<div>
+      <div>
+            <input type="text" [(ngModel)]="intext">
+      </div>
+</div>
+<br>
+<button (click)="onSend()">send </button>

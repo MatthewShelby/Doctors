@@ -22,6 +22,18 @@ export class CurrentUser {
   ) { }
 }
 
+export class User {
+  constructor(
+
+  public id?: string,
+  public email?: string,
+  public token?: string,
+  public expires?: Date
+
+  ) { }
+  
+}
+
 
 
 export interface ICheckUserrAuthResult {

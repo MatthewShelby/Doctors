@@ -1,0 +1,19 @@
+<div style="margin: 20px;">
+      <h2>Chat Page</h2>
+
+      <h3>Messages:</h3>
+      <br>
+      <br>
+      <h4 style="background-color: lightgray;padding: 4px;">{{showNum}}</h4>
+      <br>
+      <br>
+      <div>
+            <div>
+                  <input type="text" [(ngModel)]="sendText">
+            </div>
+      </div>
+      <br>
+      <div  style="margin: 4px;">
+            <button (click)="onSend()">send </button>
+      </div>
+</div>

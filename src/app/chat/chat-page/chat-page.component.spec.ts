@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterDoneComponent } from './register-done.component';
+import { ChatPageComponent } from './chat-page.component';
 
-describe('RegisterDoneComponent', () => {
-  let component: RegisterDoneComponent;
-  let fixture: ComponentFixture<RegisterDoneComponent>;
+describe('ChatPageComponent', () => {
+  let component: ChatPageComponent;
+  let fixture: ComponentFixture<ChatPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterDoneComponent ]
+      declarations: [ ChatPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterDoneComponent);
+    fixture = TestBed.createComponent(ChatPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
